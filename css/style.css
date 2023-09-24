@@ -1,0 +1,304 @@
+/*reinicio básico, que use algo llamado normalizar ese CSS para hacer un reinicio cruzado del navegador.
+para que cada navegador renderice la página exactamente de la misma manera. 
+Reinicio simple usando un selector universal*/
+*{/*El selector universal seleccionará todos y cada uno de los elementos de la página y luego aplicará 
+    estas declaraciones*/
+    margin: 0; /*margen en todos ellos de cero píxeles*/
+    padding: 0;/*relleno de cero*/
+    /*por defecto los navegadores aplican un cierto margen, o relleno, con esto se consigue que no 
+    tenga nada de eso.
+    En pocas palabras esto limpia el navegador.*/
+    box-sizing:border-box ;/*Establece una propiedad de tamaño de cuadro en cuadro de borde,
+    cambia el modelo del cuadro para que los bordes y los rellenos ya no se agrege el ancho total o la
+    altura que especificamos para un cuadro.
+    Sin esto los rellenos y los bordes se agregan a la altura o ancho de un elemento.*/    
+}
+body{
+    /*Esa familia de fuentes se heredaran para todos los elementos secundarios del cuerpo, hacerlo 
+    esta forma es una manera más eficiente.*/
+    font-family: "Lato", sans-serif;
+    font-weight: 400;/*Configura el peso de la fuente */
+    font-size: 16px;/*El tamaño general de la fuente debe de ser de 16px*/
+    line-height: 1.7;/*La altura de la línea 1.7, la altura significa que es 1.7 veces más grande 
+    que la altura de la línea predefinida */
+    color: #777;;/*Color general de texto*/
+    /*borde acorchado que rellena toda la página, aplicara el relleno a todo (top, left, right, bottom*/
+    padding: 30px;/*Este caso no es una herencia, porque el relleno no se hereda, lo que hace es 
+    aplicar un borde al rededor de todo el cuerpo*/
+}
+/*------------------------Fin del restablecimimento básico-----------------------*/
+.header{
+    /*Esto dice que en cada punto, la altura de este elemento debe de ser del 95% de la altura 
+    de la ventana gráfica.*/
+    height:95vh;
+    /*imagen de fondo, como se quire que la imagen este primero, antes de la imagen se añade el 
+    degradado para el color (como si fuera la segunda capa), basicamente es una imágen encima
+    de otra.
+    El gradiente puede ir a la derecha o a la izquierda, to right ira del lado izquiero degradando
+    hacia la derecha.
+    También puede ser de arriba a abajo, en este caso irá de la esquina inferior a la derecha.*/ 
+    /*Hacer visible la imagen, hay que cambiar la opacidad de los colores, esto se hace usando el 
+    selector de color (ventanita con todos los colores) y bajar la barra de la intensidad
+    r=rojo
+    g=verde
+    b=azul
+    grado de opacidad, en este caso el color es visible un 80%*/
+
+    background-image:linear-gradient(
+        to right,
+        rgba(202, 159, 187, 0.8),
+        rgba(175, 40, 182, 0.8)),
+        url('../img/portada.png') ;
+        
+    /*Establece el tamaño del fondo, lo que hace es que sea del ancho del elemento*/
+    background-size: cover;
+
+    /*Establece la posición del fondo y se puede configurar en la parte superior, esto hace que si la 
+    ventana se hace más pequeña siempre la imagen este en la parte superior de la pantalla, el fondo de
+    la imagen cambiaria recortandose, pero la parte superior no, si fuese en botton sería al contrario.*/
+    background-position: top;
+
+    /*recortar la imagen para que se vea el efecto, 
+    lo que realiza es especificar un polígono en el que la imagen o elemento, seguirá siendo visible. 
+    polygon(coordenadas que definen el polígono) lo que se debe hacer es poner las coordenadas de cada 
+    esquina de la imágen (x y,x y,x y,x y) la primera es la esquina izquierda superior y sigue las
+    agujas del reloj
+    con vh la ventana cambiará dinámicamente*/
+    clip-path:polygon(0 0,100% 0,100% 75vh,0 100%);/*Para esto hay una herramienta que se llama 
+    Clippy https://bennettfeely.com/clippy/, en esta página viene el css para las formas que se desean.*/
+    
+     /*Para que los hijos tengan una referencia para empezar a contar*/ 
+    position: relative; 
+}
+/*-----------------------------Diseño del logo---------------------------------------------*/
+.logo-box{/*Para la caja del logo*/
+    /*posicionamiento de la caja, esta medición comienza contando desde donde son los pixeles top 40 px
+     y left, por lo que empieza a contar desde donde se encuentran los 40px en la parte izquierda 
+     y 40px en la parte superior.
+     Esta referencia es un elemento padre, que tiene posición establecida como relativa.
+     como el encabezado es el elemento padre se debe establecer la posición relativa en este, para que 
+     la caja (logo-box) pueda comenzar a contar */
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+.logo{/*Para el logo (Tamaño de la imagen)*/
+    height:35px ;/*Altura*/
+    /*El ancho escala en consecuencia, ni si quiera hay que especificarlo, será calculado 
+    automáticamente por el navegador, tambien se podría poner el ancho y la altura sería calculada
+    por el navegador.*/   
+}
+.logo:hover{
+    /*En este caso la animación no sucede al cargar la página si no al pasar el ratón por encima*/
+    animation-name: moveInRight;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;/*la animación se puede realilzar en cualquier lugar
+    en este caso cuando se coloca el cursor del ratón sobre un elemento con la clase "logo", 
+    Esta animación debería durar 1 segundo y mover el elemento hacia la derecha con una 
+    aceleración gradual (ease-out).*/
+}
+
+/*Encabezado principal-------------------------------------------------------------------*/
+.text-box{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);/*(x,y) al poner delante el simbolo '-', transforma las medidas
+    que se toman desde el elemento padre, es decir no tomara las medidas desde el elemento padre si 
+    no desde el inicio de la página web.*/
+    text-align: center;/*Centra el contenido*/
+}
+.heading-primary{
+    color: #fff;/*Da color al texto*/
+    text-transform: uppercase;/*Convierte el texto en mayúsucula*/
+    margin-bottom: 60px;
+  
+}
+
+/*Para que un texto este uno debajo de otro es mejor mostrar ambos como elementos de distinto nivel
+de bloque, porque los elementos ocupan todo el ancho ue tienen disponible y en este caso lo importante
+es crear saltos de líneas antes y después de ellos.
+Por eso es mejor poner el texto dentro de una etiqueta <span>
+*/
+.heading-primary-main{/*Título principal*/
+    display: block;/*Hace que se muestre como un bloque para poder separar elementos*/
+    font-size: 60px;/*Tamaño de la letra*/
+    font-weight: 400;/*Ancho de la letra*/
+    letter-spacing: 35px;/*Espacio entre letras*/
+      /*----------llamar a la animación */ 
+    animation-name: moveInLeft;
+    animation-duration: 3s;/*Tiempo de duración de la animación*/
+    backface-visibility: hidden ;/*Poner siempre ya que hace que no tiemble la animación
+    Esta propiedad determina si la parte posterior del elemento lo transformamos en visible u oculto 
+    para el usuario */
+
+}
+.heading-primary-sub{/*Subtítulo*/
+    display: block;/*Hace que se muestre como un bloque para poder separar elementos*/
+    font-size: 20px;/*Tamaño de la letra*/
+    font-weight: 700;/*Ancho de la letra*/
+    letter-spacing: 17.4px;/*Espacio entre letras*/
+    /*----------llamar a la animación */
+    animation-name: moveInRight;
+    animation-duration: 3s;/*Tiempo de duración de la animación*/
+    backface-visibility: hidden ;/*Poner siempre ya que hace que no tiemble la animación
+    Esta propiedad determina si la parte posterior del elemento lo transformamos en visible u oculto 
+    para el usuario */
+    /*Otras propiedades para las animaciones más esenciales, por supuesto hay más pero no 
+    son importantes
+    https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
+    - animation-delay: 3s;/*Antes de empezar a producirse esperará 3segundos, en este caso, a esto se 
+    le llama el retraso de la animación.
+    - animation-iteration-count: 3;/*Las veces que sucederá la animación*/
+    /*Sincroniza la animación, definirá que rápido o lento son los parámetros
+    que especificamos en la animación, en este caso la animación creada 'moveInLeft' => 
+    animation-timing-function: ease-out;/*animación incorporada, son funciones de temporizador sale
+    más ràpido, ease-in entra más rápido*/
+    /*Permite escribir una funcion de temporizador personalizada*/
+    
+}
+/*------------Animaciones-----------------------------------------------------------------*/
+/*Como crear animaciones CSS usando la regla de fotogramas clave y la propiedad de animación*/
+/*Hay dos tipos de animaciones en CSS, una es usar la propiedad de transaición y cambiar las propiedades
+    que desea animar a un evento, como cuando pasamos por encima de un evento
+    animation-name: moveInLeft;
+    animation-duration: 3s;/*Tiempo de duración de la animación*/
+
+
+    @keyframes moveInLeft{/*Las animaciones se pueden llamar como tú quieras*/
+        /*Lo mejor para el rendimiento es animar solo dos propiedades diferentes, una es la opacidad 
+        y la otra es la propiedad de transformación*/
+        0%{/*inicio de la animación*/
+            opacity: 0;/*Empezará siendo invisible*/
+            /*Como el elemento viene de izquierda a derecha*/
+            transform: translateX(-100px);/*izquierda translateX(), hacia abajo translateY(). En este caso 
+            un valor positivo va en dirección a la derecha, uno negativo hacia la izquierda*/
+        }
+        /*60%{
+        transform: rotate(120deg);} Para que la animación rote en esete caso 120 grados*/
+        80%{/*Sucederá algo en el 80% de la animación, en este caso, pero puede ser en el momento que 
+            se quiera*/
+            transform: translateX(20px);/*Se realizará cuando vaya por la posición 20px*/
+        }
+        100%{/*final de la animación, estado final*/
+            opacity: 1;/*Al final la invisibilidad será de uno para que se vea el elemento*/
+            transform: translate(0);/**/
+        }
+    }
+    @keyframes moveInRight{/*En este caso el elemento se mueve a la derecha por lo que los signo 
+        son al reves de la izquierda*/
+        /*Lo mejor para el rendimiento es animar solo dos propiedades diferentes, una es la opacidad 
+        y la otra es la propiedad de transformación*/
+        0%{/*inicio de la animación*/
+            opacity: 0;/*Empezará siendo invisible*/
+            /*En este caso el elemento va de derecha a izquierd*/
+            transform: translateX(100px);/* rotate(50deg) y rota al inicio;/*izquierda translateX(), hacia 
+            abajo translateY(). En este caso un valor positivo va en dirección a la derecha, 
+            uno negativo hacia la izquierda*/
+        }
+        80%{/*Sucederá algo en el 80% de la animación, en este caso, pero puede ser en el momento 
+            que se quiera*/
+            transform: translateX(-20px);/*Se realizará cuando vaya por la posición 20px*/
+        }
+        100%{/*final de la animación, estado final*/
+            opacity: 1;/*Al final la invisibilidad será de uno para que se vea el elemento*/
+            transform: translate(0);/**/
+        }
+    }
+    /*Animación para el botón*/
+    @keyframes moveInBottom{/*Como es de un punto a otro no se necesitan puntos intermedios*/
+        0%{/*inicio de la animación*/
+            opacity: 0;/*Empezará siendo invisible*/
+            transform: translateY(30px);/*como se quiere mover hacía abajo es un valor positivo*/
+        }
+        100%{/*final de la animación, estado final*/
+            opacity: 1;/*Al final la invisibilidad será de uno para que se vea el elemento*/
+            transform: translate(0);/**/
+        }
+    }
+/*------Botón animado----------------------------------------------------------------------------*/
+/*Los botones van ha ser unos enlaces de pseudo clases por lo que link es un estado de selector
+de botones, cuando el usuario pasa el cursor por el elemento o se hace clic en una casilla de 
+verficación o si se quiere seleccionar un último hijo y muchas otras posibilidades.
+Por lo que es un estado especial del selector */
+.btn:link, .btn:visited{/*Elementos comunes de los botones, esto es la clase btn que al tener link, 
+    se pone asi*/
+/*Estado en el que usuario hace clic en el botón y luego vuelve a ver el botón, se conoce 
+como el estado visitado*/
+/*Cuando hay un link este aparece de color azul, al ser seleccionado ya este aparece de color 
+purpura, en este caso se quiere se quiere que se quede como el estado normal*/
+text-transform: uppercase;
+text-decoration: none;/*Quita la decoración*/
+padding: 15px 40px;/*Relleno para el botón*/
+display: inline-block;/*El elemento en línea es transformado a un bloque, de esta forma actuara 
+como un elemento sólo*/
+border-radius: 100px;
+transition: all .2s;/*animaciones con la regla de fotogramas clave, hay que especificar que propiedades 
+se quieren animar, si no se sabe cuales son 'all' (todo) y se puede especificar el tiempo que dura
+la animación.
+Esto debe de estar en el estado inicial de la transación, despues se realizaran las transformaciones*/
+position: relative;/*Para ocultar el pseudo-elemento 'btn::after'*/
+}
+.btn:hover{/*Para que el botón pase a un estado diferente al hacer clic*/
+    /*lo mueve hacia arriba, con la transformación podemos hacer que elementos se mueva,
+    giren, etc por este motivo la transformación es muy importante*/
+    transform: translateY(-3px);/*para que suba hacía arriba, por lo que se usa valor negativo*/
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);/*Agrega sombra a la caja (x,abajo,desenfoque,color)*/
+}
+.btn:active{/*para cuando este activo el botón, es decir se ha pulsado*/
+transform: translateY(-1px);
+}
+.btn-white{/*Botón principal*/
+background-color: white;
+color: #777;
+}
+/*-------------------------------pseudo-elemntos--------------------------------------------*/
+/*Efecto del boton que parece que se aleja infinito  cuando pasamos el botón y cuando volvemos.
+En esta seccion se mostrará el poder del CSS y de los pseudo-elementos*/
+/*Estos nos perminten diseñar ciertas partes de los elementos, como por ejemplo el pseudo-elemento 
+posterior que se va a usar, agregado como un elemento virtual.
+justo después del elemento que estamos seleccionando y luego poder diseñarlo*/
+.btn::after{/*El truco aquí es agregar un elemento que se vea exactamente como el botón,
+    pero lo colocamos detrás y cuando nos desplazamos fuera del boton este permanece oculto detrás
+    del botón*/
+    content: "";/*Para que el pseudo-codigo aparezca en la página que queremos, siempre 
+    hay que ponerlo, si no, no aparece*/
+    display: inline-block;/*Especificar propiedad de visualización, en este caso es un bloque en 
+    línea ya que el botón que tenemos tambien esta en línea*/
+    height: 100%;
+    width: 100%;/*Altura y anchura del 100% ya que se quiere tener el mismo elemento, esto funciona 
+    porque el pseudo-código after es un elemento secundario del botón. */
+    border-radius: 100px;/*Debe de ser la misma también*/
+    position: absolute;/*Con position absoluta se pone el top y left, el posicionamiento absoluto 
+    necesita tener una referencia*/
+    top: 0;
+    left: 0;
+    z-index: -1;/*define la posición de los elementos si esta uno encima de otro*/
+    transform: scale(1);/*La animación se realiza en el estado inicial del pseudo-elemento.
+    Aplica la transformación de escala inicial (sin cambio)*/
+    transition: transform 0.4s;/* Define la duración y las propiedades animadas */
+}
+.btn-white::after{/*Como el elemento se quiere igual, el color del fondo tambien se pone en 
+    pseudo-codigo*/
+    background-color: #fff;
+
+}
+.btn-white:hover::after{/*Da estilos para el pseudo-elemento posterior, solo cuando se tiene 
+    el botoón en el estado de desplazamiento y se quiere que sea más grande*/
+    transform: scaleX(1.4) scaleY(1.6);/*El elemento crece y se desvanece, se realiza una escalada, 
+    el tamaño se aumentará, en este caso un 1.5 de como tenía antes.
+    Se puede escalar en la dirección que se desee transform: scaleX() scaleY()*/
+    opacity: 0;/*El truco para devanecer algo, es opacidad 0, ya que establece básicamente el 
+    invisible*/
+
+}
+.btn-animated{/*verificar la compatibilidad del navegador para comprobar que funciona*/
+    animation: moveInBottom 0.5s ease-out 0.75s;/*Para que empiece un poco más tarde que las otras
+     animaciones*/
+     /*animation: nomAnimadion duración sincronización;*/
+     animation-fill-mode: backwards;/*Modo de rellen de animación, aplicará los estilos hasta un 
+     cero por ciento antes de que comience la animación, realizando la configuración al revés.
+     forwards en sentido contrario*/
+}
+
+

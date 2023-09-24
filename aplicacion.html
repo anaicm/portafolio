@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Port-folio Ana</title>
+  <!-- Agrega el enlace a Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Agrega el enlace a Bootstrap JS y jQuery (opcional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+      <h1 style="color: rgb(9, 96, 96);text-align: center;">Port-folio</h1>
+
+      <div class="row">
+        <!--Hospital-->
+          <div class="col-md-4">
+              <div id="app1Button"  class="card" style="width: 18rem;">
+                  <img src="hospital.png" class="card-img-top" alt="App 1" style="width: 16rem; height: 11rem; margin: 10px 5px 0 10px; padding-left: 5px;">
+                  <div class="card-body">
+                      <h5 class="card-title">App 1</h5>
+                      <p class="card-text">Centro hospitalario.</p><br>
+                      Proyecto de fin de módulo
+                      <a href="https://github.com/anaicm/Hospital"><p>Código de la aplicación</p></a>
+                      <!--<label for="app1Select">Selecciona una página:</label>
+                        <select id="app1Select" class="form-control" onchange="goToPage('app1.html', this.value)">
+                            <option id="paginaPrincipal" value="portada">Página principal</option>
+                            <option id="portalUsuario" value="usuario">Portal usuario</option>
+                            <option id="portalAdministrador" value="administrador">Portal administrador</option>
+                            <option id="portalRecepcionista" value="recepcionista">Portal recepcionista</option>
+                            <option id="portalEspecialista" value="especialista">Portal especialista</option>
+                        </select>-->
+                  </div>
+              </div>
+          </div>
+          <!--Librería-->
+          <div class="col-md-4">
+              <div id="app2Button"  class="card" style="width: 18rem;">
+                  <img src="produccion.png" class="card-img-top" alt="App 2" style="width: 16rem; height: 11rem; margin: 10px 5px 0 10px; padding-left: 5px;">
+                  <div class="card-body">
+                      <h5 class="card-title">App 2</h5>
+                      <p class="card-text">Club de lectura</p><br>
+                      Blibioteca virtual en React js.
+                      <a href="https://github.com/anaicm/libreria"><p>Código de la aplicación</p></a>
+                  </div>
+              </div>
+          </div>
+          <!--Prueba técnica maniack fitnes-->
+          <div class="col-md-4">
+            <div id="app3Button"  class="card" style="width: 18rem;">
+                <img src="gym.png" class="card-img-top" alt="App 3" style="width: 16rem; height: 11rem; margin: 10px 5px 0 10px; padding-left: 5px;">
+                <div class="card-body">
+                    <h5 class="card-title">App 3</h5>
+                    <p class="card-text">Prueba Técnica</p><br>
+                    Maquetación con HTML, CSS y JavaScript.
+                    <a href="https://github.com/anaicm/PruebaFrontend"><p>Código de la aplicación</p></a>
+                </div>
+            </div>
+          </div>
+          <!--Back-end-->
+          <div class="col-md-4">
+            <div id="app3Button"  class="card" style="width: 18rem;">
+                <img src="back-end.png" class="card-img-top" alt="App 3" style="width: 16rem; height: 11rem; margin: 10px 5px 0 10px; padding-left: 5px;">
+                <div class="card-body">
+                    <h5 class="card-title">Back-End</h5>
+                    <a href="https://github.com/anaicm/ApiNet"><p>Creación de BD, Api y CRUD .NET</p></a>
+                    <a href="https://github.com/anaicm/python_scrapy"><p>Python Scrapy</p></a>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+    <script>
+        // Funciones para redirigir a las aplicaciones
+        //aplicación hopital
+        // Obtiene el elemento select
+         //para la aplicacion de libros cuando se termine
+         app2Button.addEventListener("click", function() {
+            window.location.href = "libreria/index.html";
+        });
+        /**var app1Select = document.getElementById("app1Select");
+        // Agrega un evento de cambio a las opciones del selector
+        app1Select.addEventListener("change", function () {
+        // Obtiene el valor de la opción seleccionada
+        var selectedPage = this.value;
+        if(selectedPage=="portada"){
+          window.location.href = "/cosas/Hospital-main/vista/index.php";
+        }else if(selectedPage=="usuario"){
+          window.location.href = "/cosas/Hospital-main/vista/portal_usuario.php";
+        }else if(selectedPage=="administrador"){
+          window.location.href = "/cosas/Hospital-main/vista/Administrador/Portal_administrador.php";
+        }else if(selectedPage=="recepcionista"){
+          window.location.href = "/cosas/Hospital-main/vista/Personal_autorizado/portal_usuario_autorizado.php";
+        }else if(selectedPage=="especialista"){
+          window.location.href = "/cosas/Hospital-main/vista/Especialista/portal_especialista.php";
+        }
+
+        });*/
+
+        //para la aplicacion de libros cuando se termine
+        app1Button.addEventListener("click", function() {
+            window.location.href = "/cosas/Hospital-main/vista/index.php";
+        });
+         //para la prueba técnica
+         app3Button.addEventListener("click", function() {
+            window.location.href = "/cosas/maniak/index.html";
+        });
+    </script>
+</body>
+</html>
